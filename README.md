@@ -5,7 +5,7 @@
 <p><b>Projektbeschreibung:</b> Wir wollen zunächst ein Tool entwickeln, das z.B. bei Felsmalereien die Bilder auf den Felsen hervorhebt,
 bzw. den Hintergrund (den Felsen) eliminiert. Dies soll mit Hilfe verschiedener Filtertechniken erreicht werden. </p>
 
-Dieses Projekt ist ein Gruppenprojekt für den Kurs "Künstliche Intelligenz und Cultural Heritage" an der Universität zu Köln
+Dieses Projekt ist ein Gruppenprojekt für den Kurs "Künstliche Intelligenz und Cultural Heritage" an der Universität zu Köln.
 
 <b>Beispielbild aus Arachne (http://arachne.uni-koeln.de/):</B>
 <br>
