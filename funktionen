@@ -1,0 +1,62 @@
+#include <opencv2/opencv.hpp>
+#include <iostream>
+#include "grabcut.h"
+
+using namespace std;
+using namespace cv;
+
+
+
+void grabcut::CallBackFunc(int event, int x, int y, int flags, void* userdata)
+{
+    int x1,x2,y1,y2;
+
+     if  ( event==EVENT_LBUTTONDOWN )
+     {
+         cout << x << ", "<< y << endl;
+          x1 = x;
+          y1 = y;
+     }
+     if (event == EVENT_LBUTTONUP)
+     {
+          cout << x << ", " << y << endl;
+          x2 = x;
+          y2 = y;
+          grabCFunc(x1,x2,y1,y2);
+
+     }
+}
+
+void grabcut::grabCFunc(int x1, int x2, int y1,int y2){
+    // define bounding rectangle
+    Rect rect(x1,y1,x2,y2);
+
+    Mat image;
+    image= imread("pic.jpg");
+
+    Mat result; // segmentation result (4 possible values)
+    Mat bgModel,fgModel; // the models (internally used)
+
+    // GrabCut segmentation
+    grabCut(image,    // input image
+                result,   // segmentation result
+                rect,// rectangle containing foreground
+                bgModel,fgModel, // models
+                1,        // number of iterations
+                GC_INIT_WITH_RECT); // use rectangle
+    cout << "Fertig" <<endl;
+    // Get the pixels marked as likely foreground
+    compare(result,GC_PR_FGD,result,cv::CMP_EQ);
+    // Generate output image
+    Mat foreground(image.size(),CV_8UC3,Scalar(255,255,255));
+    //cv::Mat background(image.size(),CV_8UC3,cv::Scalar(255,255,255));
+    image.copyTo(foreground,result); // bg pixels not copied
+
+    // draw rectangle on original image
+    rectangle(image, rect, Scalar(255,255,255),1);
+
+    imwrite("img_1.jpg",image);
+
+    imwrite("Foreground.jpg",foreground);
+
+}
