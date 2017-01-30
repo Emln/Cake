@@ -1,0 +1,12 @@
+#ifndef GRABCUT
+#define GRABCUT
+
+class grabcut {
+
+public:
+    void grabCFunc(int x1, int x2, int y1, int y2);
+    void CallBackFunc (int event, int x, int y, int flags, void* userdata);
+};
+
+#endif // GRABCUT
+
