@@ -5,12 +5,30 @@
 using namespace cv;
 using namespace std;
 
+void CallBackFunc(int event, int x, int y, int flags, void* userdata)
+{
+    int x1,x2,y1,y2;
+    grabcutClass gc;
+
+     if  ( event==EVENT_LBUTTONDOWN )
+     {
+         cout << x << ", "<< y << endl;
+          x1 = x;
+          y1 = y;
+     }
+     if (event == EVENT_LBUTTONUP)
+     {
+          cout << x << ", " << y << endl;
+          x2 = x;
+          y2 = y;
+          gc.grabCFunc(x1,x2,y1,y2);
+
+     }
+}
 
 
 int main( )
 {
-    grabcut gc;
-
     // Open another image
     Mat image;
     image= imread("pic.jpg");
@@ -21,7 +39,7 @@ int main( )
 
     imshow ("mywindow", image);
 
-    setMouseCallback("mywindow", gc.CallBackFunc, NULL);
+    setMouseCallback("mywindow", CallBackFunc, NULL);
 
     waitKey(0);
 
