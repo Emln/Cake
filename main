@@ -1,0 +1,29 @@
+#include <opencv2/opencv.hpp>
+#include <iostream>
+#include "grabcut.h"
+
+using namespace cv;
+using namespace std;
+
+
+
+int main( )
+{
+    grabcut gc;
+
+    // Open another image
+    Mat image;
+    image= imread("pic.jpg");
+
+    Mat image2 = image.clone();
+
+    namedWindow("mywindow",1);
+
+    imshow ("mywindow", image);
+
+    setMouseCallback("mywindow", gc.CallBackFunc, NULL);
+
+    waitKey(0);
+
+    return 0;
+}
